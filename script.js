@@ -126,3 +126,9 @@ searchInput.addEventListener("input", () => {
   renderPostDisplay(newArr);
   console.log("hello");
 });
+
+searchBtn.addEventListener("click", () => {
+  searcPost(post, searchInput.value);
+  renderPostDisplay(newArr);
+  console.log("hello");
+});
