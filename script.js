@@ -6,6 +6,8 @@ const moreOption = document.getElementById("moreOption");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
+postArticle.focus();
+
 const post = [
   {
     id: 1,
@@ -85,7 +87,7 @@ function renderPostDisplay(arr) {
     `;
   });
 }
-renderPostDisplay(post);
+renderPostDisplay(post.reverse());
 
 function addPost() {
   let generatePost = {
@@ -96,25 +98,31 @@ function addPost() {
     postdate: `${new Date()}`,
   };
   post.push(generatePost);
-  renderPostDisplay(post);
-  console.log(generatePost.id);
+  renderPostDisplay(post.reverse());
+  postUsername.value = "";
+  postArticle.value = "";
 }
 
 let newArr = [];
 
 function searcPost(arr, params) {
-  arr.map((e) => {
-    if (
-      params.toLowerCase() ==
-      e.postarticle.slice(0, params.length).toLowerCase()
-    ) {
-      newArr.push(e);
-    }
-  });
+  newArr = [];
+  if (params !== "") {
+    arr.map((e) => {
+      if (
+        params.toLowerCase() ==
+        e.postarticle.slice(0, params.length).toLowerCase()
+      ) {
+        newArr.push(e);
+      }
+    });
+  } else {
+    newArr = post;
+  }
 }
 
-searchBtn.addEventListener("click", () => {
+searchInput.addEventListener("change", () => {
   searcPost(post, searchInput.value);
   renderPostDisplay(newArr);
-  // console.log(newArr);
+  console.log("hello");
 });
