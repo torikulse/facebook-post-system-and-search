@@ -121,7 +121,7 @@ function searcPost(arr, params) {
   }
 }
 
-searchInput.addEventListener("change", () => {
+searchInput.addEventListener("input", () => {
   searcPost(post, searchInput.value);
   renderPostDisplay(newArr);
   console.log("hello");
